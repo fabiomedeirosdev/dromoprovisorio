@@ -2,7 +2,11 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home1/fabi4954/ufodromo.com.br/
+<<<<<<< HEAD
     - /bin/cp index.html $DEPLOYPATH
     - /bin/cp -R assets $DEPLOYPATH
     - /bin/cp -R css $DEPLOYPATH
     - /bin/cp -R js $DEPLOYPATH
+=======
+    - /bin/cp -R * $DEPLOYPATH
+>>>>>>> e0f94bb8545b4ec352d52048dd3fe640d155e65c
