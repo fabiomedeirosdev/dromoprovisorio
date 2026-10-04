@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home1/fabi4954/ufodromo.com.br/
+    - /bin/cp -R * $DEPLOYPATH

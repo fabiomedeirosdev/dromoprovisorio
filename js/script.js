@@ -7,7 +7,8 @@
 // CONFIGURAÇÃO — GOOGLE APPS SCRIPT
 // =========================================================
 
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbEfPAmBUpHcYVosG0qJ0-jfOZX_lbfRbY6vQCqd7pkQ2eXZwCv1-es3V7G9cxpjs92/exec";
+const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbyEfPAmBUpHcYVosG0qJ0-jfOZX_IbfRBy6vQCqd7pkQ2eXZwCv1-es3V7G9cxpjs92/exec";
 
 
 // =========================================================
@@ -15,15 +16,10 @@ const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbEfPAmBUpHcYV
 // =========================================================
 
 const form = document.getElementById("interest-form");
-
 const nameInput = document.getElementById("name");
-
 const emailInput = document.getElementById("email");
-
 const whatsappInput = document.getElementById("whatsapp");
-
 const messageInput = document.getElementById("message");
-
 const formMessage = document.getElementById("form-message");
 
 
@@ -74,17 +70,10 @@ form.addEventListener("submit", async function (event) {
     // PEGA OS DADOS
     // =====================================================
 
-    const name =
-        nameInput.value.trim();
-
-    const email =
-        emailInput.value.trim();
-
-    const whatsapp =
-        whatsappInput.value.trim();
-
-    const message =
-        messageInput.value.trim();
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const whatsapp = whatsappInput.value.trim();
+    const message = messageInput.value.trim();
 
 
     // =====================================================
@@ -132,13 +121,9 @@ form.addEventListener("submit", async function (event) {
     const interessado = {
 
         nome: name,
-
         email: email,
-
         whatsapp: whatsapp,
-
         mensagem: message,
-
         data: new Date().toLocaleString("pt-BR")
 
     };
@@ -180,14 +165,18 @@ form.addEventListener("submit", async function (event) {
         // SUCESSO
         // =================================================
 
-        formMessage.textContent =
-            "Obrigado! Seu interesse foi registrado. " +
-            "Em breve entraremos em contato.";
 
-        formMessage.style.color =
-            "#55e5b0";
+formMessage.innerHTML =
+    "✅ <strong>Interesse enviado com sucesso!</strong><br>" +
+    "Obrigado pelo cadastro. Entraremos em contato quando o UFOFORUM estiver disponível.";
 
+formMessage.style.color = "#55e5b0";
+formMessage.style.marginTop = "15px";
+formMessage.style.lineHeight = "1.6";
 
+form.reset();
+
+        
         // =================================================
         // LIMPA O FORMULÁRIO
         // =================================================
