@@ -4,6 +4,13 @@
 
 
 // =========================================================
+// CONFIGURAÇÃO — GOOGLE APPS SCRIPT
+// =========================================================
+
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbEfPAmBUpHcYVosG0qJ0-jfOZX_lbfRbY6vQCqd7pkQ2eXZwCv1-es3V7G9cxpjs92/exec";
+
+
+// =========================================================
 // ELEMENTOS
 // =========================================================
 
@@ -58,10 +65,14 @@ whatsappInput.addEventListener("input", function () {
 // ENVIO DO FORMULÁRIO
 // =========================================================
 
-form.addEventListener("submit", function (event) {
+form.addEventListener("submit", async function (event) {
 
     event.preventDefault();
 
+
+    // =====================================================
+    // PEGA OS DADOS
+    // =====================================================
 
     const name =
         nameInput.value.trim();
@@ -128,44 +139,76 @@ form.addEventListener("submit", function (event) {
 
         mensagem: message,
 
-        data:
-            new Date().toLocaleString(
-                "pt-BR"
-            )
+        data: new Date().toLocaleString("pt-BR")
 
     };
 
 
     // =====================================================
-    // TEMPORÁRIO
-    //
-    // Por enquanto mostramos os dados no console.
-    // Depois vamos substituir isso pelo envio para
-    // seu backend/banco de dados.
-    // =====================================================
-
-    console.log(
-        "Novo interessado:",
-        interessado
-    );
-
-
-    // =====================================================
-    // MENSAGEM PARA O USUÁRIO
+    // MENSAGEM DE ENVIO
     // =====================================================
 
     formMessage.textContent =
-        "Obrigado! Seu interesse foi registrado. " +
-        "Em breve entraremos em contato.";
+        "Enviando...";
 
     formMessage.style.color =
-        "#55e5b0";
+        "#ffffff";
 
 
     // =====================================================
-    // LIMPA O FORMULÁRIO
+    // ENVIO PARA GOOGLE SHEETS
     // =====================================================
 
-    form.reset();
+    try {
+
+        await fetch(GOOGLE_SCRIPT_URL, {
+
+            method: "POST",
+
+            mode: "no-cors",
+
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+
+            body: JSON.stringify(interessado)
+
+        });
+
+
+        // =================================================
+        // SUCESSO
+        // =================================================
+
+        formMessage.textContent =
+            "Obrigado! Seu interesse foi registrado. " +
+            "Em breve entraremos em contato.";
+
+        formMessage.style.color =
+            "#55e5b0";
+
+
+        // =================================================
+        // LIMPA O FORMULÁRIO
+        // =================================================
+
+        form.reset();
+
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao enviar formulário:",
+            erro
+        );
+
+        formMessage.textContent =
+            "Não foi possível enviar seus dados. " +
+            "Tente novamente.";
+
+        formMessage.style.color =
+            "#ff7777";
+
+    }
 
 });
