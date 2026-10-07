@@ -129,7 +129,7 @@ body {
         Courier,
         monospace;
 
-    font-size: 13px;
+    font-size: 14px;
 
     font-weight: bold;
 
@@ -203,7 +203,7 @@ main {
 
     color: #49e2ac;
 
-    font-size: 13px;
+    font-size: 14px;
 
     font-weight: bold;
 
@@ -334,7 +334,7 @@ main {
 
     color: #71817e;
 
-    font-size: 10px;
+    font-size: 14px;
 }
 
 
@@ -413,7 +413,7 @@ main {
 
     color: #d5dfdc;
 
-    font-size: 12px;
+    font-size: 14px;
 
     font-weight: bold;
 }
@@ -441,7 +441,7 @@ main {
         Courier,
         monospace;
 
-    font-size: 13px;
+    font-size: 14px;
 
     transition:
         border-color 0.2s ease,
@@ -504,7 +504,7 @@ main {
         Courier,
         monospace;
 
-    font-size: 13px;
+    font-size: 14px;
 
     font-weight: bold;
 
@@ -531,7 +531,7 @@ main {
 
     color: #62e8b5;
 
-    font-size: 12px;
+    font-size: 14px;
 
     line-height: 1.5;
 
@@ -577,7 +577,7 @@ main {
         Courier,
         monospace;
 
-    font-size: 10px;
+    font-size: 14px;
 }
 
 .footer-container p:last-child {
@@ -657,7 +657,7 @@ main {
     .whatsapp-button {
         padding: 10px 12px;
 
-        font-size: 9px;
+        font-size: 14px;
     }
 
     main {
@@ -671,7 +671,7 @@ main {
     }
 
     .eyebrow {
-        font-size: 10px;
+        font-size: 14px;
 
         letter-spacing: 2px;
     }
@@ -683,7 +683,7 @@ main {
     }
 
     .hero-content > p {
-        font-size: 12px;
+        font-size: 14px;
 
         line-height: 1.7;
     }

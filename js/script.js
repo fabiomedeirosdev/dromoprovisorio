@@ -1,10 +1,10 @@
 // =========================================================
-// UFOFORUM — SCRIPT.JS
+// UFOFORUM - SCRIPT.JS
 // =========================================================
 
 
 // =========================================================
-// CONFIGURAÇÃO — GOOGLE APPS SCRIPT
+// CONFIGURACAO - GOOGLE APPS SCRIPT
 // =========================================================
 
 const GOOGLE_SCRIPT_URL =
@@ -24,7 +24,7 @@ const formMessage = document.getElementById("form-message");
 
 
 // =========================================================
-// MÁSCARA DO WHATSAPP
+// MASCARA DO WHATSAPP
 // =========================================================
 
 whatsappInput.addEventListener("input", function () {
@@ -58,7 +58,7 @@ whatsappInput.addEventListener("input", function () {
 
 
 // =========================================================
-// ENVIO DO FORMULÁRIO
+// ENVIO DO FORMULARIO
 // =========================================================
 
 form.addEventListener("submit", async function (event) {
@@ -75,9 +75,8 @@ form.addEventListener("submit", async function (event) {
     const whatsapp = whatsappInput.value.trim();
     const message = messageInput.value.trim();
 
-
     // =====================================================
-    // VALIDAÇÃO
+    // VALIDACAO
     // =====================================================
 
     if (!name || !email || !whatsapp) {
@@ -93,7 +92,7 @@ form.addEventListener("submit", async function (event) {
 
 
     // =====================================================
-    // VALIDAÇÃO DO E-MAIL
+    // VALIDACAO DO E-MAIL
     // =====================================================
 
     const emailRegex =
@@ -103,7 +102,7 @@ form.addEventListener("submit", async function (event) {
     if (!emailRegex.test(email)) {
 
         formMessage.textContent =
-            "Digite um e-mail válido.";
+            "Digite um e-mail valido.";
 
         formMessage.style.color =
             "#ff7777";
@@ -119,18 +118,15 @@ form.addEventListener("submit", async function (event) {
     // =====================================================
 
     const interessado = {
-
         nome: name,
         email: email,
-        whatsapp: whatsapp,
-        mensagem: message,
-        data: new Date().toLocaleString("pt-BR")
-
+        celular: whatsapp,
+        mensagem: message
     };
 
 
     // =====================================================
-    // MENSAGEM DE ENVIO
+    // ENVIO DOS DADOS
     // =====================================================
 
     formMessage.textContent =
@@ -139,65 +135,43 @@ form.addEventListener("submit", async function (event) {
     formMessage.style.color =
         "#ffffff";
 
-
-    // =====================================================
-    // ENVIO PARA GOOGLE SHEETS
-    // =====================================================
-
     try {
 
         await fetch(GOOGLE_SCRIPT_URL, {
 
             method: "POST",
-
             mode: "no-cors",
-
             headers: {
                 "Content-Type": "text/plain;charset=utf-8"
             },
-
             body: JSON.stringify(interessado)
 
         });
 
+        formMessage.innerHTML =
+            "<strong>Dados enviados com sucesso!</strong><br>" +
+            "Obrigado pelo cadastro. Entraremos em contato em breve.";
 
-        // =================================================
-        // SUCESSO
-        // =================================================
-
-
-formMessage.innerHTML =
-    "✅ <strong>Interesse enviado com sucesso!</strong><br>" +
-    "Obrigado pelo cadastro. Entraremos em contato quando o UFOFORUM estiver disponível.";
-
-formMessage.style.color = "#55e5b0";
-formMessage.style.marginTop = "15px";
-formMessage.style.lineHeight = "1.6";
-
-form.reset();
-
-        
-        // =================================================
-        // LIMPA O FORMULÁRIO
-        // =================================================
+        formMessage.style.color = "#55e5b0";
+        formMessage.style.marginTop = "15px";
+        formMessage.style.lineHeight = "1.6";
 
         form.reset();
-
 
     } catch (erro) {
 
         console.error(
-            "Erro ao enviar formulário:",
+            "Erro ao enviar formulario:",
             erro
         );
 
         formMessage.textContent =
-            "Não foi possível enviar seus dados. " +
-            "Tente novamente.";
+            "Nao foi possivel enviar seus dados. Tente novamente.";
 
         formMessage.style.color =
             "#ff7777";
 
     }
+
 
 });
